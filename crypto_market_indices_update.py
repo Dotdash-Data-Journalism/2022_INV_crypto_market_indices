@@ -80,11 +80,11 @@ for key, value in cm.tickers.items():
     else:
         colorsList.append("#31a354")
 
-cmDict = {'Index': ['BITCOIN',
-                    'ETHEREUM',
-                    'BINANCE COIN',
-                    'RIPPLE',
-                    'CARDANO'], 
+cmDict = {'Index': ['Bitcoin (BTC)',
+                    'Ethereum (ETH)',
+                    'Binance Coin (BNB)',
+                    'Ripple (XRP)',
+                    'Cardano (ADA)'], 
             'Level': latestIndexList,
             'Change': idxChgList,
             '% Change': pctCngList}
@@ -104,20 +104,20 @@ callBack = {"metadata": {
                         "columns": {
                             "Change": {
                                 "customColorText": {
-                                    "BITCOIN": colorsList[0], 
-                                    "ETHEREUM": colorsList[1],
-                                    "BINANCE COIN": colorsList[2],
-                                    "RIPPLE": colorsList[3],  
-                                    "CARDANO": colorsList[4]
+                                    "Bitcoin (BTC)": colorsList[0], 
+                                    "Ethereum (ETH)": colorsList[1],
+                                    "Binance Coin (BNB)": colorsList[2],
+                                    "Ripple (XRP)": colorsList[3],  
+                                    "Cardano (ADA)": colorsList[4]
                                     }
                                 },
                             "% Change": {
                                 "customColorText": {
-                                    "BITCOIN": colorsList[0], 
-                                    "ETHEREUM": colorsList[1],
-                                    "BINANCE COIN": colorsList[2],
-                                    "RIPPLE": colorsList[3],  
-                                    "CARDANO": colorsList[4]
+                                    "Bitcoin (BTC)": colorsList[0], 
+                                    "Ethereum (ETH)": colorsList[1],
+                                    "Binance Coin (BNB)": colorsList[2],
+                                    "Ripple (XRP)": colorsList[3],  
+                                    "Cardano (ADA)": colorsList[4]
                                     }
                                 }
                             }

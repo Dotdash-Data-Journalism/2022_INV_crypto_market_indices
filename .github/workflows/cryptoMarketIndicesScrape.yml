@@ -3,7 +3,7 @@ name: scraper-cm-indices-yahoo-finance
 on:
   workflow_dispatch:
   schedule:
-    - cron: '31 18 * * 1-5' # runs once at 18:31 UTC
+    - cron: '31 19 * * 1-5' # runs once at 18:31 UTC
 
 jobs:
   build:

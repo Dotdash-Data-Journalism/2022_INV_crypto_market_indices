@@ -58,19 +58,34 @@ def updateChart(dw_chart_id, dataSet, metadataJSON, dw_api_key):
     file.write(latestPNG)
     file.close()
 
-cm = yf.Tickers("BTC-USD ETH-USD BNB-USD XRP-USD ADA-USD")
+# Function to use yfinance to get ticker data
+def getYFinance(ticker):
+    yfRes = yf.Ticker(ticker)
+    tickerDF = yfRes.history(period='5d', interval='1d', prepost=False, auto_adjust=False, actions=False)
+    time.sleep(0.25)
+    tickerDF.reset_index(level=0, inplace=True)
+    tickerDFSorted = tickerDF.sort_values(by=['Date'], ascending=False).reset_index(drop=True)
+    todayPrice = float(tickerDFSorted['Close'][0])
+    yesterdayPrice = float(tickerDFSorted['Close'][1])
+    dayChangePrice = todayPrice - yesterdayPrice
+    dodChgYF = round(((todayPrice - yesterdayPrice) / yesterdayPrice) * 100, 2)
+    
+    return(todayPrice, dayChangePrice, dodChgYF)
+
+# cm = yf.Tickers("BTC-USD ETH-USD BNB-USD XRP-USD ADA-USD")
+cm_tickers = ["BTC-USD", "ETH-USD", "BNB-USD", "XRP-USD", "ADA-USD"]
 
 latestIndexList = []
 idxChgList = []
 pctCngList = []
 colorsList = []
 
-for key, value in cm.tickers.items():
-    time.sleep(2)
-    stock = value.info
-    idxVal = stock['regularMarketPrice']
-    idxChg = stock['regularMarketPrice'] - stock['previousClose']
-    pctCng = round(((stock['regularMarketPrice'] - stock['previousClose']) / stock['previousClose']) * 100, 2)
+for ticker in cm_tickers:
+    time.sleep(3)
+    stock = getYFinance(ticker=ticker)
+    idxVal = stock[0]
+    idxChg = stock[1]
+    pctCng = stock[2]
     latestIndexList.append(idxVal)
     idxChgList.append(idxChg)
     pctCngList.append(pctCng)
